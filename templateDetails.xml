@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension
+	version="0.9"
+	type="template"
+	client="site">
+	<name>exj</name>
+	<creationDate>03/03/2013</creationDate>
+	<author>Erwin Brinkers</author>
+	<authorEmail>erwin@jetset.nl</authorEmail>
+	<authorUrl>http://www.experimentaljetset.nl</authorUrl>
+	<copyright>Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>0.1</version>
+	<description>hello!</description>
+	<files>
+		<folder>html</folder>
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>language</folder>
+		<folder>js</folder>
+		<filename>index.php</filename>
+		<filename>index.html</filename>
+		<filename>favicon.ico</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>component.php</filename>
+		<filename>error.php</filename>
+	</files>
+
+	<positions>
+		<position>exj-search</position>
+		<position>exj-menu</position>
+		<position>exj-menu2</position>
+		<position>exj-menu3</position>
+		<position>exj-menu4</position>	
+		<position>exj-menu5</position>
+		<position>related</position>
+		<position>exj-top</position>
+		<position>exj-nav</position>
+		<position>exj-bottom1</position>
+		<position>exj-bottom2</position>
+		<position>exj-cart</position>
+	</positions>
+
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_exj.ini</language>
+		<language tag="en-GB">en-GB/en-GB.tpl_exj.sys.ini</language>
+	</languages>
+
+</extension>
