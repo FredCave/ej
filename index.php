@@ -35,13 +35,17 @@ include("includes/header.php"); ?>
 			<?php 
 		endif; 
 
-		/* CATEGORIES */
+		if ( strpos( $this->title, 'Online Archive' ) !== false) {
+			
+			/* IF HOME PAGE */
+			/* SHOW CATEGORIES */
+			if ( $this->countModules('exj-menu4')) : ?>
+				<div class="topright">
+					<jdoc:include type="modules" name="exj-menu4"/>
+				</div>
+			<?php endif;
 
-		if ( $this->countModules('exj-menu4')) : ?>
-			<div class="topright">
-				<jdoc:include type="modules" name="exj-menu4"/>
-			</div>
-		<?php endif;  ?>
+		} ?>
 
 	</div><!-- END OF MENUFIELD -->
 
@@ -63,8 +67,8 @@ include("includes/header.php"); ?>
 
 		/* MAIN CONTENT */ ?>
 
-		<jdoc:include type="component" />
-
+		<jdoc:include type="component" /> 
+ 
 	</div>
 
 </div><!-- END OF CONTAINER -->

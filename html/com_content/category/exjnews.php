@@ -30,22 +30,24 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 					(&thinsp;<?php echo $this->pagination->getPagesCounter(); ?>&thinsp;)
 				<?php 
 				endif;
-		endif; 
+		endif; ?>
+
+	</div>
+
+	<div class="news_pagination">
+
+		<?php 
 
 		/* PAGINATION TOP */
 
-		?>
-
-		<div class="news_pagination">
-			<?php if ( ($this->params->def('show_pagination', 1) == 1 || 
-				($this->params->get('show_pagination') == 2)) && 
-				($this->pagination->get('pages.total') > 1)) : 
-					// PAGINATION IS IN TEMPLATE -> PAGINATION.PHP
-					echo $this->pagination->getPagesLinks();
-			endif; ?>
-		</div>
-
+		if ( ($this->params->def('show_pagination', 1) == 1 || 
+			($this->params->get('show_pagination') == 2)) && 
+			($this->pagination->get('pages.total') > 1)) : 
+				// PAGINATION IS IN TEMPLATE -> PAGINATION.PHP
+				echo $this->pagination->getPagesLinks();
+		endif; ?>
 	</div>
+
 </div>
 
 <div class="colwrap news_cols">

@@ -11,9 +11,15 @@ defined('_JEXEC') or die;
 $lang = JFactory::getLanguage();
 $upper_limit = $lang->getUpperLimitSearchWord();
 ?>
+
 <div class="title">
-		Search results <?php echo $this->pagination->getPagesCounter(); ?>
-	</div>
+	Search results <?php echo $this->pagination->getPagesCounter(); ?>
+</div>
+
+<div class="article"><div class="pagination">
+	<?php echo $this->pagination->getPagesLinks(); ?>
+</div>
+
 <br /><form id="searchForm" action="<?php echo JRoute::_('index.php?option=com_search');?>" method="post">
 	<fieldset class="word">
 		<input type="text" name="searchword" id="search-searchword" size="30" maxlength="<?php echo $upper_limit; ?>" value="<?php echo $this->escape($this->origkeyword); ?>" class="resultbox" />

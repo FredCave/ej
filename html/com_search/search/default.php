@@ -10,20 +10,18 @@
 defined('_JEXEC') or die;
 ?>
 
-<div class="article"><div class="pagination">
-	<?php echo $this->pagination->getPagesLinks(); ?>
-</div>
-<?php if ($this->params->get('show_page_heading')) : ?>
-<b>
-	<?php if ($this->escape($this->params->get('page_heading'))) :?>
-		<?php echo $this->escape($this->params->get('page_heading')); ?>
-	<?php else : ?>
-		<?php echo $this->escape($this->params->get('page_title')); ?>
-	<?php endif; ?>
-</b>
-<?php endif; ?>
+<?php /* if ($this->params->get('show_page_heading')) : ?>
+	<b>
+		<?php if ($this->escape($this->params->get('page_heading'))) :?>
+			<?php echo $this->escape($this->params->get('page_heading')); ?>
+		<?php else : ?>
+			<?php echo $this->escape($this->params->get('page_title')); ?>
+		<?php endif; ?>
+	</b>
+<?php endif; */ ?>
 
 <?php echo $this->loadTemplate('form'); ?>
+
 <?php if ($this->error==null && count($this->results) > 0) :
 	echo $this->loadTemplate('results');
 else :

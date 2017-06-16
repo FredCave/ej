@@ -29,8 +29,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 
 	<div class="left">
 		<a href="#" id="alphabetical_sorting" title="alphabetical">alphabetical</a>	
-		<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_asc.png" /></span>
-		<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_desc.png" /></span>
+		<div class="sort_arrows">
+			<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_asc.png" /></span>
+			<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_desc.png" /></span>
+		</div>
 		<?php // echo JHtml::_('grid.sort', 'alphabetical', 'a.title', $listDirn, $listOrder) ; ?>
 	</div>
 
@@ -39,8 +41,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 	/* CHRONOLOGICAL SORTING */ ?>
 
 	<div class="right">
-		<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_asc.png" /></span>
-		<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_desc.png" /></span>	
+		<div class="sort_arrows">
+			<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_asc.png" /></span>
+			<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_desc.png" /></span>	
+		</div>
 		<a href="#" id="chronological_sorting" title="chronological">chronological</a>
 		<?php // echo JHtml::_('grid.sort', 'chronological', 'a.created', $listDirn, $listOrder); ?>		
 	</div>
@@ -84,8 +88,19 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 
 		foreach ($this->items as $i => $article) :
 
+			/* PREPARE TAGS TO STORE IN HTML */ 
+
+			$article->tags = new JHelperTags;
+			$tags = $article->tags->getItemTags('com_content.article', $article->id);
+			$tag_str = "";
+			// LOOP THROUGH AVAILABLE TAGS
+			foreach ( $tags as $tag ) { 
+				$tag_str = $tag_str . $tag->title . ", ";
+			}
+			$tag_str = substr($tag_str, 0, -2);
+
 			if ( in_array($article->access, $this->user->getAuthorisedViewLevels()) ) : ?>
-				<div class="line" data-date="<?php echo JHtml::_( 'date', $article->displayDate, "Ymd" ); ?>">
+				<div class="line" data-key="<?php echo $tag_str; ?>" data-date="<?php echo JHtml::_( 'date', $article->displayDate, "Ymd" ); ?>">
 					<div class="left">
 						
 						<?php 

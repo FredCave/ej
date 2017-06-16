@@ -13,10 +13,23 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 // Create shortcuts to some parameters.
 $params		= $this->item->params;
-$images = json_decode($this->item->images);
-$urls = json_decode($this->item->urls);
+$images 	= json_decode($this->item->images);
+$urls 		= json_decode($this->item->urls);
 $canEdit	= $this->item->params->get('access-edit');
 $user		= JFactory::getUser();
+
+// FUNCTION FOR GETTING NEXT + PREVIOUS TITLES
+function getSiblingTitle ( $article_id ) {
+
+	$db = JFactory::getDbo();
+	$query = $db->getQuery(true)
+	    ->select($db->quoteName('title'))
+	    ->from($db->quoteName('#__content'))
+	    ->where('id = '. $db->Quote($article_id));
+	$db->setQuery($query);
+	return $db->loadResult();
+
+}
 
 // TEMPLATE FOR SINGLE POSTS, ABOUT + CONTACT
 
@@ -80,32 +93,44 @@ endif; ?>
 </div><!-- END OF .ARTICLE -->
 
 <?php 
-/*
+$this->item->tags = new JHelperTags;
+$tags = $this->item->tags->getItemTags('com_content.article', $this->item->id);
+$tag_str = "";
+// LOOP THROUGH AVAILABLE TAGS
+foreach ( $tags as $tag ) { 
+	$tag_str = $tag_str . "<a class='plain' href='". $this->baseurl ."/?tag=" . urlencode($tag->title) . "'>" . ucfirst( $tag->title ) . "</a>, ";
+}
+$tag_str = substr($tag_str, 0, -2);
 
-<div class="keywords">
-	<p>Filed under:</p>
-	<p><a class="plain" href="/index.php/component/taxonomy/texts%20/%20interviews?Itemid=59">texts / interviews</a></p>
-</div>
+// IF TAGS:
+if ( strlen ( $tag_str ) > 0 ) : ?>
 
+	<div class="keywords">
+		<p>Filed under:</p>
+		<p><?php echo $tag_str; ?></p>
+	</div>
 
+<?php endif; 
 
-<div class="pagenavtitles">
-	<p>next: <a class="archive" href="<?php echo $this->item->next; ?>" rel="next">Next</a></p>
-	<p>prev: <a href="<?php echo $this->item->prev; ?>" rel="prev">Previous</a></p>
-</div>
+$nextExists = false;
+$prevExists = false;
 
-*/ ?>
-
-
-<?php
-
-/*
-Filed under:
-texts / interviews
-next: NAiM Re-Action
-prev: Interview / Confessions
-*/ 
-
-
+// EXTRACT IDs FROM NEXT/PREVIOUS LINKS
+if ( strlen ( $this->item->next ) > 0 ) {
+	$nextId = explode ( "-", explode("archive/", $this->item->next)[1] )[0];
+	$nextExists = true; 
+}
+if ( strlen ( $this->item->prev ) > 0 ) {
+	$prevId = explode ( "-", explode("archive/", $this->item->prev)[1] )[0];
+	$prevExists = true; 
+}
 ?>
 
+<div class="pagenavtitles">
+	<?php if ( $nextExists ) { ?>
+		<p>next: <a class="" href="<?php echo $this->item->next; ?>" rel="next"><?php echo getSiblingTitle ( $nextId ); ?></a></p>
+	<?php } ?>
+	<?php if ( $prevExists ) { ?>
+		<p>prev: <a href="<?php echo $this->item->prev; ?>" rel="prev"><?php echo getSiblingTitle ( $prevId ); ?></a></p>
+	<?php } ?>	
+</div>
