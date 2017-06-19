@@ -42,6 +42,13 @@ $app = JFactory::getApplication();
 
         <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/exj.css" type="text/css" />
 
+		<script>
+			// FIX IE CONSOLE ERRORS
+			if (!window.console) console = {log: function() {}}; 
+			// SET ROOT
+			var ROOT = '<?= JURI::root(); ?>';
+		</script>
+
     </head>
     <body>
 		<!-- // INCLUDE NEDSTAT PRO CODE V2.005H – DISABLED -->

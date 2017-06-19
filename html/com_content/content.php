@@ -35,6 +35,6 @@ elseif ($input->get('view') === 'articles' && $input->get('layout') === 'modal')
 	}
 }
 
-$controller = JControllerLegacy::getInstance('Content');
+// $controller = JControllerLegacy::getInstance('Content');
 $controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();

@@ -502,8 +502,9 @@ li.selected.parent{
 }
 
 .navlink {
+/*	border: 1px solid red;*/
 	display: inline-block; 
-	width: 90%; 
+/*	width: 90%; */
 	color: white; 
 	text-decoration:none;
 }
@@ -517,10 +518,28 @@ li.selected.parent{
 	color: black;
 }
 
+.pagenavtop {
+/*	border: 1px solid purple;*/
+	display: flex;
+	flex-wrap: nowrap;
+	margin-top: 8px;
+}
+
+.navleft, 
+.navright {
+/*	border: 1px solid green;*/
+	flex-basis: 50%;
+}
+
+.navleft span, .navright span {
+/*	border: 1px solid blue;*/
+	margin: 0 6px;
+}
+
 .navright {
 	width: 50%; 
 	text-align: left; 
-	float:right;
+/*	float:right;*/
 }
 
 .navright .navlink {
@@ -534,13 +553,13 @@ li.selected.parent{
 }
 
 .navright:active .navlink {
-	text-decoration: underline overline;
+/*	text-decoration: underline overline;*/
 }
 
 .navleft {
 	width:50%; 
 	text-align: right; 
-	float: left;
+/*	float: left;*/
 }
 
 .navleft .navlink {
@@ -554,7 +573,7 @@ li.selected.parent{
 }
 
 .navleft:active .navlink {
-	text-decoration: underline overline;
+/*	text-decoration: underline overline;*/
 }
 
 .sort {
@@ -691,7 +710,7 @@ li.selected.parent{
 	@media ( min-width: 1281px ) { 
 		.article { 
 			max-width: 1700px; 
-			min-width: 1350px; 
+			/*min-width: 1350px; */
 		}
 	}
 
@@ -961,6 +980,11 @@ span#jcemediabox-popup-numbers:after {
 	content:' )';
 }
 
+span#jcemediabox-popup-numbers:empty:before,
+span#jcemediabox-popup-numbers:empty:after {
+	content:'';
+}
+
 #jcemediabox-popup-caption {
 /*	border: 1px solid green;*/
 	width: 100%;
@@ -989,6 +1013,7 @@ span#jcemediabox-popup-numbers:after {
 #jcemediabox-popup-prev:hover, 
 #jcemediabox-popup-next:hover {
 	background: none;
+/*	background: white;*/
 }
 
 #jcemediabox-popup-prev {
@@ -1003,7 +1028,7 @@ span#jcemediabox-popup-numbers:after {
 #jcemediabox-popup-prev:visited:hover:after {
 	content:"← prev"; 
 	background: white; 
-	opacity:0.9; 
+	opacity:1; 
 	padding: 1em; 
 	text-decoration: none; 
 	float:left;
@@ -1013,7 +1038,7 @@ span#jcemediabox-popup-numbers:after {
 #jcemediabox-popup-next:visited:hover:after {
 	content: "next →"; 
 	background: white; 
-	opacity:0.9; 
+	opacity:1; 
 	padding: 1em; 
 	text-decoration: none; 
 	float:right;

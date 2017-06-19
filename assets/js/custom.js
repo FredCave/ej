@@ -133,11 +133,18 @@ var Page = {
 			nextImg = $(selector).eq( eq ).find("img"); 
 		}
 
-		nextImg.attr( "src", nextImg.attr("data-src") ).on("load", function(){
+		var dataSrc = nextImg.attr("data-src") 
+
+		// HACK FOR LOCAL IMAGES
+		if  ( dataSrc !== undefined && dataSrc.indexOf("www.experimentaljetset.nl") > -1 ) {
+			// console.log(140);
+			dataSrc = dataSrc.replace( "http://www.experimentaljetset.nl/", ROOT );
+		}
+		// console.log( 137, dataSrc );
+		nextImg.attr( "src", dataSrc ).on("load", function(){
 
 			$(selector).eq( eq ).addClass("loaded");
 			if ( eq < $(selector).length ) {
-
 				eq++;
 				self.loadingLoop ( selector, eq );
 			}
@@ -199,11 +206,11 @@ var Page = {
 		$(".newsblock").each( function(){
 
 			// REMOVE LINKS FROM IMAGES
-			$(this).find("img").each( function(){
-				if ( $(this).parent("a").length ) {
-					$(this).unwrap();
-				}
-			});
+			// $(this).find("img").each( function(){
+			// 	if ( $(this).parent("a").length ) {
+			// 		$(this).unwrap();
+			// 	}
+			// });
 
 			// IF NOT AN EMPTY WRAPPER
 			if ( !$(this).is(':empty')){
@@ -219,6 +226,9 @@ var Page = {
 			}
 
 		});
+
+		// RUN LAZYLOAD ON IMAGES
+		this.loadingLoop ( "img", 0 );
 
 	},
 

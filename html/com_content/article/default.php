@@ -31,15 +31,52 @@ function getSiblingTitle ( $article_id ) {
 
 }
 
+// EXTRACT IDs FROM NEXT/PREVIOUS LINKS
+$nextExists = false;
+$prevExists = false;
+if ( property_exists( $this->item, "next" ) ) {
+	if ( $this->item->next !== "" ) {
+		// echo $this->item->next;
+		$nextId = explode ( "-", explode("archive/", $this->item->next)[1] )[0];
+		$nextExists = true; 
+	}
+}
+if ( property_exists( $this->item, "prev" ) ) {
+	if ( $this->item->prev !== "" ) {
+		// var_dump($this->item->prev);
+		$prevId = explode ( "-", explode("archive/", $this->item->prev)[1] )[0];
+		$prevExists = true; 
+	}
+} 
+
 // TEMPLATE FOR SINGLE POSTS, ABOUT + CONTACT
 
-if ( !empty($this->item->pagination) 
-	&& $this->item->pagination 
-	&& !$this->item->paginationposition 
-	&& $this->item->paginationrelative ) {
-		echo $this->item->pagination;
-	}
+// if ( !empty($this->item->pagination) 
+// 	&& $this->item->pagination 
+// 	&& !$this->item->paginationposition 
+// 	&& $this->item->paginationrelative ) {
+// 		echo $this->item->pagination;
+// 	} ?>
 
+<div class="pagenavtop">
+	<div class="navleft">
+	<?php if ( $prevExists ) { ?>
+		<a class="navlink" href="<?php echo $this->item->prev; ?>" rel="prev"><?php echo getSiblingTitle ( $prevId ); ?></a>
+		<span><&nbsp;</span>
+	<?php } ?>
+	</div>
+	
+	<div class="navright">
+	<?php if ( $nextExists ) { ?>
+		<span>>&nbsp;</span>
+		<a class="navlink" href="<?php echo $this->item->next; ?>" rel="next"><?php echo getSiblingTitle ( $nextId ); ?></a>
+	<?php } ?>
+	</div>
+	
+</div>
+
+
+<?php 
 echo $this->item->event->beforeDisplayContent;
 
 if ( $this->params->get('show_page_heading') ) : 
@@ -110,21 +147,7 @@ if ( strlen ( $tag_str ) > 0 ) : ?>
 		<p><?php echo $tag_str; ?></p>
 	</div>
 
-<?php endif; 
-
-$nextExists = false;
-$prevExists = false;
-
-// EXTRACT IDs FROM NEXT/PREVIOUS LINKS
-if ( strlen ( $this->item->next ) > 0 ) {
-	$nextId = explode ( "-", explode("archive/", $this->item->next)[1] )[0];
-	$nextExists = true; 
-}
-if ( strlen ( $this->item->prev ) > 0 ) {
-	$prevId = explode ( "-", explode("archive/", $this->item->prev)[1] )[0];
-	$prevExists = true; 
-}
-?>
+<?php endif; ?>
 
 <div class="pagenavtitles">
 	<?php if ( $nextExists ) { ?>

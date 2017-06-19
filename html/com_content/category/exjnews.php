@@ -52,20 +52,23 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 <div class="colwrap news_cols">
 
-	<?php
+	<?php 
 	$leadingcount = 0;
+	/*
 	if ( !empty( $this->lead_items) ) :
 		foreach ( $this->lead_items as &$item ) : ?>
 			<div class="newsblock">
 				<?php
 				$this->item = &$item;
-				echo $this->loadTemplate('item');
+				// echo $this->loadTemplate('item');
+				// REMOVE &NBSP FROM TEXT
+				$html = preg_replace("/\&nbsp;/",' ', $this->loadTemplate('item') );
+				echo $html;
 				$leadingcount++;
 				?>
 		</div>
 	<?php endforeach;
-
-	endif;
+	endif; */
 
 	$introcount = (count( $this->intro_items ));
 	$counter=0;
@@ -78,7 +81,11 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 				$rowcount = ( ((int)$key-1) % (int) $this->columns ) + 1;
 				$row = $counter / $this->columns;
 				$this->item = &$item;
-				echo $this->loadTemplate('item');
+				// echo $this->loadTemplate('item');
+				// REMOVE &NBSP FROM TEXT
+				$html = preg_replace("/\&nbsp;/",' ', $this->loadTemplate('item') );
+				echo str_replace("src", "data-src", $html);
+				// echo $html;
 				$counter++; ?>
 			</div>
 		<?php endforeach; 
