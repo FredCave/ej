@@ -1,4 +1,3 @@
-
 /************************************************
     CSS RESET
 ************************************************/
@@ -13,7 +12,7 @@ html, body {
 	height: 100%;
 	padding: 0;
 	margin:0; 
-	font-size: 0.92em;
+	font-size: 0.91em;
 	line-height: 1.4;
 	font-family: Helvetica, Arial, Verdana, sans-serif; 
 	text-align: center; 
@@ -51,18 +50,6 @@ b, strong {
 i, em {
 	font-style: italic;
 }
-/*
-.one {
-	border: 1px solid orange;
-	text-align: center
-}*/
-
-/*blockquote {
-	margin: 0 3em 0 3em; 
-	text-align: left; 
-	font-style: italic;
-}
-*/
 
 img {
 	margin-top: 1em; 
@@ -80,7 +67,6 @@ img {
 
 .title .left, 
 .title .right {
-/*	border: 1px solid purple;*/
 	position: relative;
 }
 
@@ -91,7 +77,6 @@ img {
 }
 
 .container {
-/*	border: 1px solid orange;*/
 	text-align: left; 
 	min-height: 100%; 
 	height: auto; 
@@ -114,11 +99,6 @@ img {
 	@media (min-width:1281px) {
 		.container	{max-width: 1700px;}
 	}
-
-#widthIndicator {
-/*	border: 1px solid red;*/
-/*	display: none; ???????? */
-}
 
 hr { 
 	width: 2em; 
@@ -147,7 +127,6 @@ hr.wide {
 }
 	
 .widecol { /* USED IN SINGLE ARTICLES */
-/*	border: 1px solid blue;*/
 	-webkit-column-width: 38em; 
 	   -moz-column-width: 38em; 
 	   		column-width: 38em;
@@ -159,9 +138,7 @@ hr.wide {
 }
 
 .storecol { 
-	border: 1px solid red;
-/*-moz-column-width:38em; -webkit-column-width: 38em; column-width: 38em;			
-*/		
+	border: 1px solid red;	
 }
 
 .error_page div, .error_page p {
@@ -256,12 +233,10 @@ a img {
 
 .menufield 	{
 	border-bottom: 1px solid black; 
-/*	margin-top: 2em;*/
 	min-height: 11em;
 }
 
 .top_left {
-/*	border: 1px solid green;*/
 	float: left; 
 	margin-right: 0.5em; 
 	margin-bottom: 1em; 
@@ -270,7 +245,6 @@ a img {
 }
 
 .topright {
-/*	border: 1px solid purple;*/
 	float: right; 
 	margin-top: -4px;
 }
@@ -278,8 +252,6 @@ a img {
 	@media (min-width: 320px) { 
 		.top_left { overflow: visible }
 	}
-
-/* ------------------- menu style & lists -------------------- */
 
 ul.menu { 
 	margin: 0; 
@@ -394,7 +366,6 @@ li.selected.parent{
 }
 
 .colwrap {
-/*	border: 1px solid blue;*/
 	display: inline-block; 
 	margin-left: auto; 
 	margin-right: auto; 
@@ -426,7 +397,6 @@ li.selected.parent{
 	}
 
 .sort_arrows {
-/*	border: 1px solid blue;*/
 	display: inline-block;
 	position: relative;
 	width: 12px;
@@ -434,16 +404,10 @@ li.selected.parent{
 }
 
 .sort_arrow {
-/*	border: 1px solid red;*/
 	position: absolute;
 	top: 0;
 	left: 0;
-/*	margin-left: 4px;*/
 	opacity: 0;
-}
-
-.right .sort_arrow {
-/*	margin-left: -16px;	*/
 }
 
 .sort_arrow img {
@@ -455,7 +419,6 @@ li.selected.parent{
 ************************************************/
 
 .pagenav { /* LINKS */
-/*	border: 1px solid purple;*/
 	margin-left: auto; 
 	margin-right: auto; 
 	width: 90%; 
@@ -468,7 +431,6 @@ li.selected.parent{
 
 .pagenavtitles { 
 	clear: both; 
-/*	float: left; */
 	margin-top: 1em; 
 	padding: 0; 
 	text-decoration: none;
@@ -502,16 +464,9 @@ li.selected.parent{
 }
 
 .navlink {
-/*	border: 1px solid red;*/
 	display: inline-block; 
-/*	width: 90%; */
 	color: white; 
 	text-decoration:none;
-}
-
-.navlink:visited, {
-/*	color:white; 
-	text-decoration:none*/
 }
 
 .navlink:hover {
@@ -519,7 +474,6 @@ li.selected.parent{
 }
 
 .pagenavtop {
-/*	border: 1px solid purple;*/
 	display: flex;
 	flex-wrap: nowrap;
 	margin-top: 8px;
@@ -527,19 +481,16 @@ li.selected.parent{
 
 .navleft, 
 .navright {
-/*	border: 1px solid green;*/
 	flex-basis: 50%;
 }
 
 .navleft span, .navright span {
-/*	border: 1px solid blue;*/
 	margin: 0 6px;
 }
 
 .navright {
 	width: 50%; 
 	text-align: left; 
-/*	float:right;*/
 }
 
 .navright .navlink {
@@ -552,14 +503,9 @@ li.selected.parent{
 	color: black;
 }
 
-.navright:active .navlink {
-/*	text-decoration: underline overline;*/
-}
-
 .navleft {
 	width:50%; 
 	text-align: right; 
-/*	float: left;*/
 }
 
 .navleft .navlink {
@@ -570,10 +516,6 @@ li.selected.parent{
 .navleft:hover .navlink	{
 	text-decoration: underline; 
 	color: black;
-}
-
-.navleft:active .navlink {
-/*	text-decoration: underline overline;*/
 }
 
 .sort {
@@ -601,7 +543,6 @@ li.selected.parent{
 ************************************************/
 
 .previewdiv	{
-/*	border: 1px solid orange;*/
 	width: 100%;
 	text-align: left; 
 	margin: 0 auto;
@@ -612,7 +553,6 @@ li.selected.parent{
 }
 
 .preview {
-/*	border: 1px solid green;*/
 	display: inline-block; 
 	text-align: center; 
 	width: 140px; 
@@ -631,7 +571,6 @@ li.selected.parent{
 }
 
 .preview_text {
-/*	border: 1px solid purple;*/
 	width: 200px;
 	margin-left: 50%;
 	transform: translateX(-50%);
@@ -671,10 +610,6 @@ li.selected.parent{
 	SINGLE 
 ************************************************/
 
-.keywords {
-/*	float: left;*/
-}
-
 .article {
 	padding-top: 8px
 }
@@ -710,7 +645,6 @@ li.selected.parent{
 	@media ( min-width: 1281px ) { 
 		.article { 
 			max-width: 1700px; 
-			/*min-width: 1350px; */
 		}
 	}
 
@@ -718,7 +652,7 @@ li.selected.parent{
 	LIGHTBOX
 ************************************************/
 
-#lightbox_bg {
+/*#lightbox_bg {
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -731,7 +665,6 @@ li.selected.parent{
 }
 
 #img_wrapper {
-/*	border: 1px solid red;*/
 	position: absolute;
 	width: 80%;
 	height: 85%;
@@ -753,18 +686,18 @@ li.selected.parent{
 }
 
 #lightbox_nav span {
-/*	border: 1px solid blue;*/
+/*	border: 1px solid blue;
 	margin: 12px 22px;
 	display: inline-block;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-touch-callout: none; /* iOS Safari 
+    -webkit-user-select: none; /* Safari 
+     -khtml-user-select: none; /* Konqueror HTML 
+       -moz-user-select: none; /* Firefox 
+        -ms-user-select: none; /* Internet Explorer/Edge 
             user-select: none; 
     cursor: pointer;
 }
-
+*/
 /************************************************ 
 	NEWS
 ************************************************/
@@ -782,19 +715,12 @@ li.selected.parent{
 }
 
 .news_cols {
-/*	border: 1px solid green;*/
 	display: flex;
-/*	flex-wrap: wrap;*/
 	flex-flow: row wrap;
 	justify-content: space-between;
 }
 
-.news_title {
-/*	margin-bottom: 16px;*/
-}
-
 .newsblock {
-/*	border: 1px solid pink;*/
 	display: inline-block; 
 	text-align: left; 
 	flex-basis: 18%;
@@ -818,7 +744,6 @@ li.selected.parent{
 }
 
 .news_pagination {
-/*	border: 1px solid red;*/
 	text-align: center;
 	margin-top: 12px;
 	margin-bottom: 36px;
@@ -911,20 +836,10 @@ li.selected.parent{
 }
 
 /************************************************ 
-	STORE
-************************************************/
-
-/*.title a:link {
-	float: left; 
-	font-weight: bold; 
-}
-*/
-/************************************************ 
 	FOOTER
 ************************************************/
 
 .bottom {
-/*	border: 1px solid blue;*/
 	height: 1em; 
 	margin: 0 auto 1.6em auto;
 }
@@ -932,8 +847,6 @@ li.selected.parent{
 	@media ( min-width: 1281px ) {
 		.bottom { max-width: 1300px }
 	}
-
-
 
 /************************************************ 
 	JCE MEDIA BOX OVERRIDES
@@ -1013,7 +926,6 @@ span#jcemediabox-popup-numbers:empty:after {
 #jcemediabox-popup-prev:hover, 
 #jcemediabox-popup-next:hover {
 	background: none;
-/*	background: white;*/
 }
 
 #jcemediabox-popup-prev {
