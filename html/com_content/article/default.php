@@ -9,8 +9,6 @@
 // no direct access
 defined('_JEXEC') || die;
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-
 // Create shortcuts to some parameters.
 $params		= $this->item->params;
 $images 	= json_decode($this->item->images);
@@ -18,9 +16,23 @@ $urls 		= json_decode($this->item->urls);
 $canEdit	= $this->item->params->get('access-edit');
 $user		= JFactory::getUser();
 
+// REDIRECT VIA JAVASCRIPT TO PARENT NEWS PAGE IF NEWS ARTICLE
+if ( $params["page_title"] === "News" ) {
+	echo '<script type="text/javascript">
+           window.location = ROOT + "news/"
+      	</script>';
+}
+
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+
+/************************************************ 
+
+	ARTICLE, ABOUT, CONTACT PAGES TEMPLATE
+
+************************************************/
+
 // FUNCTION FOR GETTING NEXT + PREVIOUS TITLES
 function getSiblingTitle ( $article_id ) {
-
 	$db = JFactory::getDbo();
 	$query = $db->getQuery(true)
 	    ->select($db->quoteName('title'))
@@ -28,7 +40,6 @@ function getSiblingTitle ( $article_id ) {
 	    ->where('id = '. $db->Quote($article_id));
 	$db->setQuery($query);
 	return $db->loadResult();
-
 }
 
 // EXTRACT IDs FROM NEXT/PREVIOUS LINKS
@@ -49,28 +60,21 @@ if ( property_exists( $this->item, "prev" ) ) {
 	}
 } 
 
-// TEMPLATE FOR SINGLE POSTS, ABOUT + CONTACT
-
-// if ( !empty($this->item->pagination) 
-// 	&& $this->item->pagination 
-// 	&& !$this->item->paginationposition 
-// 	&& $this->item->paginationrelative ) {
-// 		echo $this->item->pagination;
-// 	} ?>
+?>
 
 <div class="pagenavtop">
 	<div class="navleft">
-	<?php if ( $prevExists ) { ?>
-		<a class="navlink" href="<?php echo $this->item->prev; ?>" rel="prev"><?php echo getSiblingTitle ( $prevId ); ?></a>
-		<span><&nbsp;</span>
-	<?php } ?>
+		<?php if ( $prevExists ) { ?>
+			<a class="navlink" href="<?php echo $this->item->prev; ?>" rel="prev"><?php echo getSiblingTitle ( $prevId ); ?></a>
+			<span><&nbsp;</span>
+		<?php } ?>
 	</div>
 	
 	<div class="navright">
-	<?php if ( $nextExists ) { ?>
-		<span>>&nbsp;</span>
-		<a class="navlink" href="<?php echo $this->item->next; ?>" rel="next"><?php echo getSiblingTitle ( $nextId ); ?></a>
-	<?php } ?>
+		<?php if ( $nextExists ) { ?>
+			<span>>&nbsp;</span>
+			<a class="navlink" href="<?php echo $this->item->next; ?>" rel="next"><?php echo getSiblingTitle ( $nextId ); ?></a>
+		<?php } ?>
 	</div>
 	
 </div>
@@ -78,7 +82,6 @@ if ( property_exists( $this->item, "prev" ) ) {
 
 <?php 
 echo $this->item->event->beforeDisplayContent;
-
 if ( $this->params->get('show_page_heading') ) : 
 	echo $this->escape($this->params->get('page_heading'));
 endif; ?>
@@ -130,16 +133,22 @@ endif; ?>
 </div><!-- END OF .ARTICLE -->
 
 <?php 
+
+	/* GET TAGS */
+
 $this->item->tags = new JHelperTags;
 $tags = $this->item->tags->getItemTags('com_content.article', $this->item->id);
 $tag_str = "";
-// LOOP THROUGH AVAILABLE TAGS
+
+	/* LOOP THROUGH AVAILABLE TAGS */
+
 foreach ( $tags as $tag ) { 
 	$tag_str = $tag_str . "<a class='plain' href='". $this->baseurl ."/?tag=" . urlencode($tag->title) . "'>" . ucfirst( $tag->title ) . "</a>, ";
 }
 $tag_str = substr($tag_str, 0, -2);
 
-// IF TAGS:
+	/* IF TAGS EXIST */
+
 if ( strlen ( $tag_str ) > 0 ) : ?>
 
 	<div class="keywords">

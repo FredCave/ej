@@ -8,36 +8,34 @@
 
 // no direct access
 defined('_JEXEC') or die;
-?>
 
-<?php if ($params->get('showHere', 1))
-	{
-		echo '' .JText::_('MOD_BREADCRUMBS_HERE').'';
+if ( $params->get('showHere', 1) ) {
+	echo '' .JText::_('MOD_BREADCRUMBS_HERE').'';
+}
+
+// GET RID OF DUPLICATED ENTRIES ON TRAIL INCLUDING HOME PAGE WHEN USING MULTILANGUAGE
+for ($i = 0; $i < $count; $i ++) {
+	if ($i == 1 && !empty($list[$i]->link) && !empty($list[$i-1]->link) && $list[$i]->link == $list[$i-1]->link) {
+		unset($list[$i]);
 	}
+}
 
-	// Get rid of duplicated entries on trail including home page when using multilanguage
-	for ($i = 0; $i < $count; $i ++)
-	{
-		if ($i == 1 && !empty($list[$i]->link) && !empty($list[$i-1]->link) && $list[$i]->link == $list[$i-1]->link)
-		{
-			unset($list[$i]);
-		}
-	}
+// FIND LAST AND PENULTIMATE ITEMS IN BREADCRUMBS LIST
+end($list);
+$last_item_key = key($list);
+prev($list);
+$penult_item_key = key($list);
 
-	// Find last and penultimate items in breadcrumbs list
-	end($list);
-	$last_item_key = key($list);
-	prev($list);
-	$penult_item_key = key($list);
-
-	// Generate the trail
-	foreach ($list as $key=>$item) :
-	// Make a link if not the last item in the breadcrumbs
+// GENERATE THE TRAIL
+foreach ($list as $key=>$item) :
+	// MAKE A LINK IF NOT THE LAST ITEM IN THE BREADCRUMBS
 	$show_last = $params->get('showLast', 1);
-	if ($key != $last_item_key)
-	{// Render all but last item - along with separator
-	if (!empty($item->link)){}else{}if (($key != $penult_item_key) || $show_last){}}
-	elseif ($show_last)
-	{// Render last item if reqd.
-echo ''.$separator.' ' . $item->name . '';}
-	endforeach; ?>
+	if ( $key != $last_item_key ) { 
+		// DO NOTHING
+	} elseif ( $show_last ) {
+		// RENDER LAST ITEM IF REQD.
+		echo '' . $separator . ' ' . $item->name . '';
+	}
+endforeach; 
+
+?>

@@ -7,25 +7,30 @@
  */
 
 // no direct access
-defined('_JEXEC') or die;
-?>
+defined('_JEXEC') or die; ?>
 
-<?php /* if ($this->params->get('show_page_heading')) : ?>
-	<b>
-		<?php if ($this->escape($this->params->get('page_heading'))) :?>
-			<?php echo $this->escape($this->params->get('page_heading')); ?>
-		<?php else : ?>
-			<?php echo $this->escape($this->params->get('page_title')); ?>
-		<?php endif; ?>
-	</b>
-<?php endif; */ ?>
+<div id="search_results">
 
-<?php echo $this->loadTemplate('form'); ?>
+	<?php 
 
-<?php if ($this->error==null && count($this->results) > 0) :
-	echo $this->loadTemplate('results');
-else :
-	echo $this->loadTemplate('error');
-endif; ?>
+	/* SEARCH FORM IN DEFAULT_FORM.PHP */
+
+	echo $this->loadTemplate('form'); 
+
+	if ( $this->error==null && count($this->results ) > 0) {
+		
+		/* RESULTS IN DEFAULT_RESULTS.PHP */
+
+		echo $this->loadTemplate('results');
+
+	} else {
+
+		/* ERROR IN DEFAULT_ERROR.PHP */
+
+		echo $this->loadTemplate('error');
+
+	} 
+
+	?>
 
 </div>

@@ -14,11 +14,8 @@ defined('_JEXEC') or die;
 <form action="<?php echo JRoute::_('index.php');?>" method="post" class="inline">
 
 	<?php 
-	
 	$output = '<input name="searchword" id="mod-search-searchword" maxlength="'.$maxlength.'" class="searchbox'.$moduleclass_sfx.'" type="text" size="'.$width.'" value="'.$text.'"  onblur="if (this.value==\'\') this.value=\''.$text.'\';" onfocus="if (this.value==\''.$text.'\') this.value=\'\';" />';
-
 	echo $output;
-
 	?>
 
 	<input type="hidden" name="task" value="search" />

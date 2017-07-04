@@ -11,31 +11,17 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
-?>
+/************************************************ 
 
-	<?php 
+	ARCHIVE PAGE OUTER TEMPLATE
 
-	// LOAD LINKS TEMPLATE
-	if (!empty($this->link_items)) : 
-		echo $this->loadTemplate('links');
-	endif; ?>
+************************************************/
 
-	<?php 
+// LOAD LINKS TEMPLATE
+if (!empty($this->link_items)) : 
+	
+	// LINKS IN BLOG_LINKS.PHP
 
-	/*
+	echo $this->loadTemplate('links');
 
-	if (!empty($this->children[$this->category->id])&& $this->maxLevel != 0) :
-		echo $this->loadTemplate('children');
-	endif;
-
-	if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) :
-		if ($this->params->def('show_pagination_results', 1)) :
-			echo $this->pagination->getPagesCounter();
-		endif;
-		echo $this->pagination->getPagesLinks();
-	endif; 
-
-	*/
-
-	?>
-
+endif; ?>

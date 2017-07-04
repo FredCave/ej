@@ -11,6 +11,12 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
+/************************************************ 
+
+	NEWS PAGE TEMPLATE
+
+************************************************/
+
 ?>
 
 <div class="wide">
@@ -43,8 +49,10 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 		if ( ($this->params->def('show_pagination', 1) == 1 || 
 			($this->params->get('show_pagination') == 2)) && 
 			($this->pagination->get('pages.total') > 1)) : 
-				// PAGINATION IS IN TEMPLATE -> PAGINATION.PHP
+				
+				/* PAGINATION IS IN TEMPLATE -> PAGINATION.PHP */
 				echo $this->pagination->getPagesLinks();
+
 		endif; ?>
 	</div>
 
@@ -53,9 +61,11 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 <div class="colwrap news_cols">
 
 	<?php 
+
+	/* REMOVED LEAD ITEMS FROM BACK-END */
+
 	$leadingcount = 0;
-	/*
-	if ( !empty( $this->lead_items) ) :
+	/* if ( !empty( $this->lead_items) ) :
 		foreach ( $this->lead_items as &$item ) : ?>
 			<div class="newsblock">
 				<?php
@@ -73,6 +83,8 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 	$introcount = (count( $this->intro_items ));
 	$counter=0;
 
+	/* INDIVIDUAL NEWS ITEM TEMPLATES IN EXJNEWS_ITEM.PHP */ 
+
 	if ( !empty($this->intro_items) ) :
 		foreach ( $this->intro_items as $key => &$item ) : ?>
 			<div class="newsblock">
@@ -81,11 +93,10 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 				$rowcount = ( ((int)$key-1) % (int) $this->columns ) + 1;
 				$row = $counter / $this->columns;
 				$this->item = &$item;
-				// echo $this->loadTemplate('item');
 				// REMOVE &NBSP FROM TEXT
 				$html = preg_replace("/\&nbsp;/",' ', $this->loadTemplate('item') );
+				// REPLACE IMG SRC BY DATA-SRC FOR LAZYLOADING
 				echo str_replace("src", "data-src", $html);
-				// echo $html;
 				$counter++; ?>
 			</div>
 		<?php endforeach; 

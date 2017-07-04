@@ -1,6 +1,4 @@
 <?php
-
-	
 /**
  * Aixeena Tags System - Taxonomy
  * Component Version 1.0.0 - Joomla! Version 1.6

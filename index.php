@@ -14,7 +14,9 @@ include("includes/header.php"); ?>
 			<div class="search">
 				<jdoc:include type="modules" name="exj-search"/>
 			</div>
-		<?php endif; ?>
+		<?php endif; 
+
+		/* SITE NAME */ ?>
 
 		<a id="sitename" href="<?php echo $this->baseurl ?>">Experimental Jetset</a>
 
@@ -28,7 +30,7 @@ include("includes/header.php"); ?>
 			</div>
 		<?php endif; 
 
-		/* BREADCRUMBS */
+		/* BREADCRUMB PAGE TITLE ON SINGLE */
 
 		if($this->countModules('exj-menu2')) : ?>
 			<jdoc:include type="modules" name="exj-menu2"/>
@@ -37,8 +39,8 @@ include("includes/header.php"); ?>
 
 		if ( strpos( $this->title, 'Online Archive' ) !== false) {
 			
-			/* IF HOME PAGE */
-			/* SHOW CATEGORIES */
+			/* IF HOME PAGE : SHOW CATEGORY DROPDOWN */
+
 			if ( $this->countModules('exj-menu4')) : ?>
 				<div class="topright">
 					<jdoc:include type="modules" name="exj-menu4"/>
@@ -47,7 +49,7 @@ include("includes/header.php"); ?>
 
 		} ?>
 
-	</div><!-- END OF MENUFIELD -->
+	</div><!-- END OF DIV.MENUFIELD -->
 
 	<?php 
 
@@ -71,7 +73,7 @@ include("includes/header.php"); ?>
  
 	</div>
 
-</div><!-- END OF CONTAINER -->
+</div><!-- END OF DIV.CONTAINER -->
 
 <?php 
 /* FOOTER CODE MOVED TO EXTERNAL FILE: INCLUDES/FOOTER */

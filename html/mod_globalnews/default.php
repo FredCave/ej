@@ -9,6 +9,12 @@
 # Technical Support:  Forum - http://www.joomlahill.com/forum
 -------------------------------------------------------------------------*/
 
+/************************************************ 
+
+	PREVIEW PAGE TEMPLATE
+
+************************************************/
+
 // no direct access
 defined('_JEXEC') or die;
 
@@ -20,17 +26,25 @@ foreach ($cat as $group) :
 	$list  = modGlobalNewsHelper::getGN_List($params,$listCondition);
 
 	if ( count($list) || $empty != 0 ) :
-
-		$more  = $params->get('more', 1);
-		$i++; $j++; ?>
+		$more = $params->get('more', 1);
+		$i++; 
+		$j++; ?>
 
 		<div id="preview_page" class="previewdiv">
 			<?php 
-			if ( $show_cat != 0 ) : ?>
+			if ( $show_cat != 0 ) : 
+
+				/* PAGE TITLE */
+
+				?>
 				<div class="title">Archive: Preview</div>
 			<?php endif;
-			if ( count ( $list) > 0 ) :
-				require(JModuleHelper::getLayoutPath('mod_globalnews', $layout));
+			if ( count ($list) > 0 ) :
+				
+				/* LOOP TEMPLATE IN STATIC.PHP */
+
+				require( JModuleHelper::getLayoutPath('mod_globalnews', $layout) );
+				
 			endif; ?>
 		</div>
 

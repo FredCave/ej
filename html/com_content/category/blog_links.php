@@ -6,6 +6,12 @@
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+/************************************************ 
+
+	ARCHIVE PAGE INNER TEMPLATE
+
+************************************************/
+
 // no direct access
 defined('_JEXEC') or die;
 
@@ -18,7 +24,6 @@ $params		= &$this->item->params;
 $n			= count($this->items);
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
-
 ?>
 
 <div class="title">
@@ -30,10 +35,9 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 	<div class="left">
 		<a href="#" id="alphabetical_sorting" title="alphabetical">alphabetical</a>	
 		<div class="sort_arrows">
-			<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_asc.png" /></span>
-			<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_desc.png" /></span>
+			<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort.png" /></span>
+			<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort.png" /></span>
 		</div>
-		<?php // echo JHtml::_('grid.sort', 'alphabetical', 'a.title', $listDirn, $listOrder) ; ?>
 	</div>
 
 	<?php 
@@ -42,11 +46,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 
 	<div class="right">
 		<div class="sort_arrows">
-			<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_asc.png" /></span>
-			<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort_desc.png" /></span>	
+			<span class="sort_asc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort.png" /></span>
+			<span class="sort_desc sort_arrow"><img src="<?php echo $this->baseurl ?>/templates/exj/assets/img/sort.png" /></span>	
 		</div>
 		<a href="#" id="chronological_sorting" title="chronological">chronological</a>
-		<?php // echo JHtml::_('grid.sort', 'chronological', 'a.created', $listDirn, $listOrder); ?>		
 	</div>
 
 	<?php 
@@ -65,35 +68,25 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 <div id="archive_list" class="narrowcol">
 
 	<?php 
+
 	// IF LIST IS EMPTY
 	if (empty($this->items)) : 
 		if ($this->params->get('show_no_articles', 1)) : 
 			echo JText::_('COM_CONTENT_NO_ARTICLES'); 
 		endif; 
-	else : 
-		// SORTING FUNCTIONALITY??
-		/* 
-		?>
-		<form action="<?php echo htmlspecialchars(JFactory::getURI()->toString()); ?>" method="post" name="adminForm" id="adminForm">
-		<?php if ($this->params->get('show_headings') || $this->params->get('filter_field') != 'hide' || $this->params->get('show_pagination_limit')) :?>
-			<fieldset class="filters">
-				<input type="hidden" name="filter_order" value="" />
-				<input type="hidden" name="filter_order_Dir" value="" />
-				<input type="hidden" name="limitstart" value="" />
-			</fieldset>
-		<?php endif;  */ 
 	endif; ?>	
 
 		<?php 
 
 		foreach ($this->items as $i => $article) :
 
-			/* PREPARE TAGS TO STORE IN HTML */ 
+			/* PREPARE TAGS TO STORE IN HTML */
 
 			$article->tags = new JHelperTags;
 			$tags = $article->tags->getItemTags('com_content.article', $article->id);
 			$tag_str = "";
-			// LOOP THROUGH AVAILABLE TAGS
+			
+			/* LOOP THROUGH AVAILABLE TAGS */
 			foreach ( $tags as $tag ) { 
 				$tag_str = $tag_str . $tag->title . ", ";
 			}
@@ -128,14 +121,12 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 						<?php endif; ?>
 
 					</div><!-- END OF .LEFT -->
+					
 					<div class="right">
 						<?php echo JHtml::_('date', $article->displayDate, $this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC2')))); ?>
 					</div><!-- END OF .RIGHT -->
+					
 				</div><!-- END OF .LINE-->
-
-
-				<?php /* <br class="removeiffirst"/> */ ?>
-
 
 			<?php else : // SHOW UNAUTH LINKS
 				if ( $article->catid == "50" ): ?>
@@ -144,22 +135,10 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<a class="<?php echo $article->catid;?>" href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid)); ?>">
 						<?php echo $this->escape($article->title); ?>	
 					</a>
-					<!-- </div> ?? -->
 					<br class="removeiffirst"/>
 				<?php endif; 
 			endif; 
 
 		endforeach; ?>
-
-	<!-- </div> ?? -->
 	
-	<?php 
-	// IF LIST IS NOT EMPTY
-	/*
-	if (!empty($this->items)) : ?>	
-		</form>
-	<?php endif; 
-	*/
-	?>
-
 </div><!-- END OF .ARCHIVE_LIST -->

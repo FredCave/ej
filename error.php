@@ -18,9 +18,7 @@ include("includes/header.php"); ?>
 
 	<div class="error_message">
 
-		<p>
-			<?php echo $this->error->getMessage(); ?>
-		</p>
+		<p><?php echo $this->error->getMessage(); ?></p>
 		
 		<p>
 			<?php echo JText::_('JERROR_LAYOUT_NOT_ABLE_TO_VISIT'); ?>
@@ -46,9 +44,7 @@ include("includes/header.php"); ?>
 			<a href="<?php echo $this->baseurl; ?>/index.php?option=com_search" title="<?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?>">Search</a>
 		</p>
 
-		<div>
-			<?php echo JText::_('JERROR_LAYOUT_PLEASE_CONTACT_THE_SYSTEM_ADMINISTRATOR'); ?>
-		</div>
+		<div><?php echo JText::_('JERROR_LAYOUT_PLEASE_CONTACT_THE_SYSTEM_ADMINISTRATOR'); ?></div>
 
 	</div>
 
@@ -59,3 +55,8 @@ include("includes/header.php"); ?>
 	<jdoc:include type="modules" name="exj-menu"/>
 
 </div><!-- END OF .ERROR PAGE -->
+
+<?php 
+/* FOOTER CODE MOVED TO EXTERNAL FILE: INCLUDES/FOOTER */
+include("includes/footer.php"); 
+?>

@@ -9,26 +9,38 @@
 # Technical Support:  Forum - http://joomla.vargas.co.cr/forum
 -------------------------------------------------------------------------*/
 
+/************************************************ 
+
+	PREVIEW PAGE LOOP TEMPLATE
+
+************************************************/
+
 // no direct access
 defined('_JEXEC') or die;
 
 foreach ($list as $item) : ?>
 
 	<div class="preview">
+
 		<div class="preview_image">
 			<?php 
 			$image = $item->content; 
-			// IF IMAGE IN FIELD
+			
+			// IF IMAGE IN INTRO IMAGE FIELD
 			$values = "/(jpg)|(png)|(gif)/i";
 			if ( preg_match_all ($values, $image) ) {
-				// REPLACE SRC WITH DATA-SRC
+				
+				// REPLACE SRC WITH DATA-SRC FOR LAZY-LOADING
 				echo str_replace("src", "data-src", $image);
+
 			} else {
-				// FALLBACK IMG IN MAIN CONTENT
+				
+				// FALLBACK IMG: GET FIRST IMG IN POST CONTENT
 				$text = $item->introtext;
 				preg_match('/<img (.*?)>/', $text, $match);
 				preg_match('/(src)=("[^"]*")/i', $match[0], $src);
 				echo "<img " . $src[0] . "/>";
+
 			} ?>
 		</div>
 		<div class="preview_text">
@@ -41,7 +53,7 @@ foreach ($list as $item) : ?>
 
 <?php
 // ADD FOUR EMPTY BLOCKS FOR ALIGNMENT HACK
-for ( $j = 0; $j < 4; $j++ ) {
+for ( $j = 0; $j < 6; $j++ ) {
 	echo '<div class="preview"></div>';
 }
 ?>

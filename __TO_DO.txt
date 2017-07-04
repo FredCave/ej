@@ -1,34 +1,45 @@
-Most noticeable is the ‘lazy load’ system - which is already is a good improvement. That, and overall speed, which is great one!
-If you are still working on the load system - could you see if it is possible to use this on the news page as well? It feels natural to have it on the preview page and item pages, but it would seem better if the news page works the same way.
-
-
-- the thumbnails on the preview and news pages seem slightly enlarged, which causes them to be a bit blurred. 
-- the order of the news items is not chronological - can this be fixed?
-- the txt is slightly larger than before - I have a hunch ems are better than points - but this might need some fiddling. Which, by the way, is also something we can do later!
-- there are some whitespaces and such, but that seems something that we can fix ourselves, too - right?
-
-
-
-### DELETE ALL UNECESSARY PHP FILES IN TEMPLATE
-
-### SITE OPTIMISATION AUDIT
-
-### REDIRECT SINGLE NEWS TO MAIN NEWS PAGE
-
 ### CLEAN URLS
+
+
+
+
+
+
 
 ### TEST IN IE, MOBILE, ETC.
 
 ### FIND ANALYTICS SERVICE
 
-### WWW –> NO-WWW REDIRECT –> XS4ALL
+### WWW –> NO-WWW REDIRECT
 
 
 
 
+index.php?option=com_content
+	&a_id=174
+		&catid=65
+		&id=174
+	&task=article.edit
+		&view=article
+		&Itemid=59
+index.php?option=com_content
+	&catid=65
+	&id=174
+	&view=article
+	&Itemid=59
 
 
+ index.php?option=com_content
+ 	&id=54
+ 	&layout=exj:exjnews
+ 	&view=category
+ 	&Itemid=314
 
+index.php?option=com_content
+	&id=54
+	&layout=exj:exjnews
+	&view=category
+	&Itemid=139
 
 
 

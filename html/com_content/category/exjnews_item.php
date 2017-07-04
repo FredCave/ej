@@ -9,6 +9,12 @@
 // NO DIRECT ACCESS
 defined('_JEXEC') or die;
 
+/************************************************ 
+
+	INDIVIDUAL NEWS ITEM TEMPLATE
+
+************************************************/
+
 // CREATE A SHORTCUT FOR PARAMS
 $params = &$this->item->params;
 $images = json_decode($this->item->images);
@@ -42,20 +48,11 @@ if ($params->get('show_title')) : ?>
 			<?php echo $this->escape($this->item->title); ?>
 		<?php endif; ?>
 	</b>
-<?php endif; 
-
-// REMOVE LINK FROM IMAGES IN CONTENT
-// $notagintrotex =strip_tags( $this->item->introtext, '<img>');
-$notagintrotex = $this->item->introtext;
-// IF IMAGE FIRST IN CONTENT
-$class = "";
-if ( substr( $notagintrotex, 0, 5 ) === "<img " ) {
-	$class = "image_first";
-} ?>
+<?php endif; ?>
 
 <div class="news_item_content <?php echo $class; ?>">
 	
-	<?php echo $notagintrotex; ?>
+	<?php echo $this->item->introtext; ?>
 
 </div>
 

@@ -10,9 +10,12 @@
 // NO DIRECT ACCESS
 defined('_JEXEC') or die;
 
-// LOAD THE MOOTOOLS JAVASCRIPT LIBRARY 
-// DISABLED
+// LOAD THE MOOTOOLS JAVASCRIPT LIBRARY – DISABLED
 // JHtml::_('behavior.framework', true);
+
+// STOP JOOMLA FROM LOADING CERTAIN SCRIPTS
+unset($this->_scripts[JURI::root(true).'/media/jui/js/jquery-migrate.min.js']);
+unset($this->_scripts[JURI::root(true).'/media/jui/js/jquery-noconflict.js']);
 
 // GET THE APPLICATION OBJECT 
 $app = JFactory::getApplication();
@@ -23,18 +26,16 @@ $app = JFactory::getApplication();
 <html class="no-js" lang="<?php echo $this->language; ?>">
     <head>
 		
-		<?php 
-		// JDOC HEAD DISABLED – WAS DUPLICATING TAGS ?>
 		<jdoc:include type="head" /> 
 
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title><?php echo $this->getTitle(); ?></title>
         <meta name="description" content="">
-        <?php // SCALING NEEDS TESTING ?>
+
         <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=1.2, minimum-scale=0.6, user-scalable=yes">
 
-		<?php // MAKE FULL SCREEN ON iOS */ ?>
+		<?php /* MAKE FULL SCREEN ON iOS */ ?>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
