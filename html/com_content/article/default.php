@@ -119,7 +119,7 @@ endif; ?>
 		/* CONTENT */ ?>
 
 		<div class="article_content">
-
+		
 			<?php 
 			$content = $this->item->text; 
 			// REPLACE IMG SRC WITH DATA-SRC ATTRIBUTE

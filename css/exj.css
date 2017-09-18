@@ -50,12 +50,18 @@ i, em {
 	font-style: italic;
 }
 
+br {
+/*	column-break-before: avoid; DOES THIS WORK?? */ 
+}
+
 img {
+/*	border: 1px solid red;*/
 	margin-top: 1em; 
 	margin-bottom: 0.5em; 
 	max-width: 100%; 
-	height: auto;
-	opacity: 0;
+	display: block;
+/*	height: auto;*/
+/*	opacity: 0;*/
 	transition: opacity 1s;
 }
 
@@ -639,6 +645,10 @@ li.selected.parent{
 	padding-top: 8px
 }
 
+.article_content {
+	margin-top: 20px;
+}
+
 .article img {
 	opacity: 0;
 	transition: opacity 1s;
@@ -696,12 +706,15 @@ li.selected.parent{
 }
 
 .newsblock {
+/*	border: 1px solid green;*/
 	display: inline-block; 
 	text-align: left; 
 	max-width: 230px;
 	margin-bottom: 2em; 
 	padding-bottom: 1em; 
 	vertical-align: top; 
+	opacity: 0;
+	transition: opacity 1s;
 }
 
 .newsblock img {
@@ -966,5 +979,9 @@ span#jcemediabox-popup-numbers:empty:after {
 	max-width: calc( 100% - 20px ) !important;
 }
 
+/* TMP */
 
+img {
+/*	border: 1px solid red !important;*/
+}
 

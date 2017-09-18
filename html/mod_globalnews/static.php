@@ -38,9 +38,12 @@ foreach ($list as $item) : ?>
 				// FALLBACK IMG: GET FIRST IMG IN POST CONTENT
 				$text = $item->introtext;
 				preg_match('/<img (.*?)>/', $text, $match);
-				preg_match('/(src)=("[^"]*")/i', $match[0], $src);
-				echo "<img " . $src[0] . "/>";
-
+				// IF IMAGE EXISTS
+				if ( $match ) {
+					preg_match('/(src)=("[^"]*")/i', $match[0], $src);
+					echo "<img " . $src[0] . "/>";
+				}
+			
 			} ?>
 		</div>
 		<div class="preview_text">

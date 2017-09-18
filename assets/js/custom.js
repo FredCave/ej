@@ -36,7 +36,6 @@
 
 			// IF NEWS PAGE: FIX IMAGES
 			if ( $(".news_cols").length ) {
-				this.setImageHeight();
 				this.newsPrep();
 			} 		
 
@@ -138,7 +137,7 @@
 				nextImg = $(selector).eq( eq ).find("img"); 
 			}
 
-			var dataSrc = nextImg.attr("data-src") 
+			var dataSrc = nextImg.attr("data-src");
 
 			// HACK FOR LOCAL IMAGES
 			if  ( dataSrc !== undefined && dataSrc.indexOf("www.experimentaljetset.nl") > -1 ) {
@@ -148,16 +147,31 @@
 			nextImg.attr( "src", dataSrc ).on("load error", function(){
 
 				// RESET HEIGHT
-				if ( selector === "img" ) {
-					$(selector).css("height","");
-				} else {
-					$(selector).find("img").css("height",""); 
+				// if ( selector === "img" ) {
+				// 	// $(selector).css("height","");
+				// 	nextImg.css("height","");
+				// } else {
+				// 	$(selector).find("img").css("height",""); 
+				// }
+				nextImg.css("height","");
+
+				// IF PARENT IS LINK
+				if ( nextImg.parent("a").length ) {
+					nextImg.parent("a").css({
+						"display" 		: "", 
+						"margin-top" 	: "",
+						"margin-bottom" : ""
+					});
 				}
+
+				console.log( 158, nextImg );
 
 				$(selector).eq( eq ).addClass("loaded");
 				if ( eq < $(selector).length ) {
 					eq++;
-					self.loadingLoop ( selector, eq );
+					// setTimeout( function(){
+						self.loadingLoop ( selector, eq );						
+					// }, 10000 );
 				}
 
 			});
@@ -209,6 +223,11 @@
 
 			console.log("Page.singleLazyLoad");
 
+			var self = this;
+
+					// setTimeout( function(){
+					// 	self.loadingLoop ( "img", 0 );						
+					// }, 10000 );
 			this.loadingLoop ( "img", 0 );
 
 		},
@@ -217,17 +236,22 @@
 
 			console.log("Page.newsPrep");
 
-			$(".newsblock").each( function(){
+			// this.setImageHeight();
+
+			function innerPrep ( newsBlock ) {
 
 				// IF NOT AN EMPTY WRAPPER
-				if ( !$(this).is(':empty')){
+				if ( newsBlock.find(".news_item_content").length ){
 
-					var beginStr = $(this).find(".news_item_content").html().trim().substring(0, 3);
+					console.log( 246, newsBlock.find(".news_item_content") );
+
+					var beginStr = newsBlock.find(".news_item_content").html().trim().substring(0, 3);
+
 
 					// IF STARTS WITH A LINK:
 					if ( beginStr === "<a " ) {
 						// GET FIRST LINK
-						var firstLink = $(this).find("a").eq(0);
+						var firstLink = newsBlock.find("a").eq(0);
 						// IF CONTAINS IMG
 						if ( firstLink.find("img").length ) {
 							firstLink.find("img").css("margin-top","0");
@@ -237,10 +261,47 @@
 
 				}
 
-			});
+				// RUN LAZYLOAD ON IMAGES
+				if ( newsBlock.find("img").length ) {
+					console.log( 263, "Contains image." );
+					// LOAD IMAGE(S)
 
-			// RUN LAZYLOAD ON IMAGES
-			this.loadingLoop ( "img", 0 );
+					var imgTotal = newsBlock.find("img").length,
+						imgCount = 1;
+					newsBlock.find("img").each( function(){
+
+						var dataSrc = $(this).attr("data-src");
+						$(this).attr( "src", dataSrc ).on("load error", function(){
+
+							console.log( 274, imgCount, imgTotal );						
+							if ( imgCount === imgTotal ) {
+								// ON LOAD: SHOW
+								newsBlock.css({"opacity":"1"});
+								// CALL INNERPREP ON NEXT BLOCK
+								innerPrep( newsBlock.next() );
+							} else {
+								imgCount++;
+							}
+
+						});
+
+					});
+	
+				} else {
+					console.log( 263, "No image." );	
+					// SHOW
+					newsBlock.css({"opacity":"1"});
+					// CALL INNERPREP ON NEXT BLOCK
+					if ( newsBlock.next().length ) {
+						innerPrep( newsBlock.next() );	
+					}
+	
+				}
+
+			}
+
+			// CALL INNERPREP ON FIRST BLOCK	
+			innerPrep( $(".newsblock").first() );		
 
 		},
 
@@ -290,42 +351,72 @@
 
 			console.log("Page.setImageHeight");
 
-			var mainContentW = $("#main_content").width(),
-				wrapperW,
-				imgH;
-
-			// IF NEWS
-			if ( $(".newsblock").length ) {
-				var wrapperPerc = parseInt( $(".newsblock").css("flex-basis") ) / 100, 
-					wrapperW = wrapperPerc * mainContentW;
-			} else if ( $(".widecol").length ) {
-				// WIDTH IN EM
-				wrapperW = $(".widecol a").width() - 12;
-			} else if ( $(".col").length ) {
-				wrapperW = $(".col a").width() - 12;
-			}
-
 			$("#main_content img").each( function(){
 
-				var img = $(this), 
-					imgW = parseInt( $(this).attr("width") ), 
-					ratio = imgW / $(this).attr("height");
-				// IF RATIO AVAILABLE
-				if ( $.isNumeric( ratio ) ) {
-					// MAX SIZE IS IMG SIZE
-					if ( wrapperW > imgW ) {
-						// MAX-WIDTH
-						wrapperW = imgW;
+				var imgH;
+
+				// IF PARENT IS LINK
+				if ( $(this).parent("a").length && !$(this).parent("a").hasClass("noshow") ) {
+					// SET PARENT HEIGHT BASED ON HEIGHT ATTRIBUTE + CSS MARGINS
+					if ( $(this).attr("height") !== undefined ) {
+						imgH = parseInt( $(this).attr("height") );
+					} else {
+						// NO ATTRIBUTE: 2/3 OF WIDTH
+						imgH = 0.67 * $(this).width();
 					}
-					// CALC + SET HEIGHT
-					imgH = wrapperW / ratio;
-					img.css( "height", imgH );
-					// HEIGHT IS RESET IN IMAGELOAD FUNCTION
-				}
+					$(this).parent("a").css({
+					// 	"border" 		: "1px solid blue", 
+						"height" 		: imgH + 0, // 24 IS MARGIN HEIGHT,
+						"display" 		: "block", // VALUE TO BE REMOVED ONCE IMAGE IS LOADED
+						"margin-top" 	: 12, // VALUE TO BE REMOVED ONCE IMAGE IS LOADED
+						"margin-bottom" : 12 // VALUE TO BE REMOVED ONCE IMAGE IS LOADED
+					})
+				} 
 
 			});
 
-		}
+		},
+
+		// setImageHeightLegacy: function () {
+
+		// 	console.log("Page.setImageHeightLegacy");
+
+		// 	var mainContentW = $("#main_content").width(),
+		// 		wrapperW,
+		// 		imgH;
+
+		// 	// IF NEWS
+		// 	if ( $(".newsblock").length ) {
+		// 		var wrapperPerc = parseInt( $(".newsblock").css("flex-basis") ) / 100, 
+		// 			wrapperW = wrapperPerc * mainContentW;
+		// 	} else if ( $(".widecol").length ) {
+		// 		// WIDTH IN EM
+		// 		wrapperW = $(".widecol a").width() - 12;
+		// 	} else if ( $(".col").length ) {
+		// 		wrapperW = $(".col a").width() - 12;
+		// 	}
+
+		// 	$("#main_content img").each( function(){
+
+		// 		var img = $(this), 
+		// 			imgW = parseInt( $(this).attr("width") ), 
+		// 			ratio = imgW / $(this).attr("height");
+		// 		// IF RATIO AVAILABLE
+		// 		if ( $.isNumeric( ratio ) ) {
+		// 			// MAX SIZE IS IMG SIZE
+		// 			if ( wrapperW > imgW ) {
+		// 				// MAX-WIDTH
+		// 				wrapperW = imgW;
+		// 			}
+		// 			// CALC + SET HEIGHT
+		// 			imgH = wrapperW / ratio;
+		// 			img.css( "height", imgH );
+		// 			// HEIGHT IS RESET IN IMAGELOAD FUNCTION
+		// 		}
+
+		// 	});
+
+		// }
 
 	}
 

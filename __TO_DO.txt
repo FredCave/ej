@@ -1,6 +1,10 @@
+### DEFINE IMAGE HEIGHTS
+
+### news page –> endless scroll + lazyloading
+
 ### CLEAN URLS
 
-
+https://extensions.joomla.org/extensions/extension/site-management/sef/sef-wizard-for-joomla/
 
 
 
@@ -11,9 +15,6 @@
 ### FIND ANALYTICS SERVICE
 
 ### WWW –> NO-WWW REDIRECT
-
-
-
 
 index.php?option=com_content
 	&a_id=174
@@ -27,7 +28,6 @@ index.php?option=com_content
 	&id=174
 	&view=article
 	&Itemid=59
-
 
  index.php?option=com_content
  	&id=54

@@ -50,7 +50,7 @@ if ($params->get('show_title')) : ?>
 	</b>
 <?php endif; ?>
 
-<div class="news_item_content <?php echo $class; ?>">
+<div class="news_item_content">
 	
 	<?php echo $this->item->introtext; ?>
 
