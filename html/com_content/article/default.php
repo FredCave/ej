@@ -47,6 +47,10 @@ $nextExists = false;
 $prevExists = false;
 if ( property_exists( $this->item, "next" ) ) {
 	if ( $this->item->next !== "" ) {
+
+		// HOW TO GET ID??????
+
+
 		// echo $this->item->next;
 		$nextId = explode ( "-", explode("archive/", $this->item->next)[1] )[0];
 		$nextExists = true; 
@@ -60,18 +64,24 @@ if ( property_exists( $this->item, "prev" ) ) {
 	}
 } 
 
+// var_dump( $this->item->next );
+
 ?>
 
 <div class="pagenavtop">
 	<div class="navleft">
-		<?php if ( $prevExists ) { ?>
+		<?php if ( $prevExists ) { 
+			echo $this->item->prev;
+			?>
 			<a class="navlink" href="<?php echo $this->item->prev; ?>" rel="prev"><?php echo getSiblingTitle ( $prevId ); ?></a>
 			<span><&nbsp;</span>
 		<?php } ?>
 	</div>
 	
 	<div class="navright">
-		<?php if ( $nextExists ) { ?>
+		<?php if ( $nextExists ) { 
+			echo $this->item->next;
+			?>
 			<span>>&nbsp;</span>
 			<a class="navlink" href="<?php echo $this->item->next; ?>" rel="next"><?php echo getSiblingTitle ( $nextId ); ?></a>
 		<?php } ?>

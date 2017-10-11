@@ -1,20 +1,46 @@
-### DEFINE IMAGE HEIGHTS
-
-### news page –> endless scroll + lazyloading
+### FILTER HAS DISAPPEARED
 
 ### CLEAN URLS
 
-https://extensions.joomla.org/extensions/extension/site-management/sef/sef-wizard-for-joomla/
+### SPACES AT TOP OF COLUMS
+
+### TESTTESTTEST IN IE, MOBILE, ETC.
+
+### Wearing Badges... IMG BUG
+
+### pavilionism images missing
 
 
 
 
 
-### TEST IN IE, MOBILE, ETC.
+
+
+
 
 ### FIND ANALYTICS SERVICE
 
 ### WWW –> NO-WWW REDIRECT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 index.php?option=com_content
 	&a_id=174
